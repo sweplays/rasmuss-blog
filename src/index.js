@@ -6,11 +6,14 @@ const express = require("express");
 const app = express();
 
 app.set("view engine", "ejs");
-
 app.set("views", path.join(__dirname, "../public"));
 
+app.use(express.static("public"))
+
 app.get("/", (request, response) => {
-    response.sendFile("index.ejs")
+    response.render("index", {
+        hello: "hello"
+    });
 });
 
 app.listen(port, () => {
